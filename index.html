@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPM Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-bracket">[</span>CPM<span class="logo-bracket">]</span>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-tab="products">Products</button>
+        <button class="nav-btn" data-tab="calculator">Calculator</button>
+        <button class="nav-btn" data-tab="compare">Compare</button>
+      </nav>
+      <div class="header-tag">Media Planning Tool</div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════ PRODUCTS TAB ═══════════════════ -->
+    <section class="tab-section active" id="tab-products">
+      <div class="section-header">
+        <div>
+          <h1>Product Rate Card</h1>
+          <p class="subtitle">Retail CPMs for all active products</p>
+        </div>
+        <button class="btn-primary" id="openAddModal">+ Add Product</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="searchProducts" class="search-input" placeholder="Search products…" />
+        <select id="filterCategory" class="select-input">
+          <option value="">All Categories</option>
+        </select>
+        <button class="btn-ghost" id="sortToggle" data-sort="name">Sort: Name ↑</button>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- ═══════════════════ CALCULATOR TAB ═══════════════════ -->
+    <section class="tab-section" id="tab-calculator">
+      <div class="section-header">
+        <div>
+          <h1>CPM Calculator</h1>
+          <p class="subtitle">Solve for any variable — provide two, get the third</p>
+        </div>
+      </div>
+
+      <div class="calc-layout">
+        <div class="calc-card">
+          <div class="calc-formula">
+            <span class="formula-part" data-field="cpm">CPM</span>
+            <span class="formula-op">=</span>
+            <div class="formula-fraction">
+              <span class="formula-part" data-field="cost">Cost</span>
+              <span class="formula-divider"></span>
+              <span class="formula-part" data-field="impressions">Impressions</span>
+            </div>
+            <span class="formula-op">×</span>
+            <span class="formula-const">1,000</span>
+          </div>
+
+          <div class="calc-inputs">
+            <div class="calc-field" id="field-cpm">
+              <label>
+                CPM
+                <span class="field-badge solve">solve</span>
+              </label>
+              <div class="input-row">
+                <span class="input-prefix">$</span>
+                <input type="number" id="input-cpm" placeholder="—" step="0.01" min="0" />
+              </div>
+              <button class="solve-btn active" data-target="cpm">Solve for CPM</button>
+            </div>
+
+            <div class="calc-field" id="field-cost">
+              <label>
+                Total Cost
+                <span class="field-badge"></span>
+              </label>
+              <div class="input-row">
+                <span class="input-prefix">$</span>
+                <input type="number" id="input-cost" placeholder="—" step="0.01" min="0" />
+              </div>
+              <button class="solve-btn" data-target="cost">Solve for Cost</button>
+            </div>
+
+            <div class="calc-field" id="field-impressions">
+              <label>
+                Impressions
+                <span class="field-badge"></span>
+              </label>
+              <div class="input-row">
+                <span class="input-prefix">#</span>
+                <input type="number" id="input-impressions" placeholder="—" step="1" min="0" />
+              </div>
+              <button class="solve-btn" data-target="impressions">Solve for Impressions</button>
+            </div>
+          </div>
+
+          <div class="calc-actions">
+            <button class="btn-primary" id="calcSolve">Calculate</button>
+            <button class="btn-ghost" id="calcClear">Clear</button>
+          </div>
+
+          <div class="calc-result" id="calcResult"></div>
+        </div>
+
+        <div class="calc-sidebar">
+          <div class="quick-fill-card">
+            <h3>Quick Fill from Products</h3>
+            <p>Select a product to auto-fill its CPM</p>
+            <div id="quickFillList" class="quick-fill-list"></div>
+          </div>
+
+          <div class="tips-card">
+            <h3>How to use</h3>
+            <ul>
+              <li>Click <strong>Solve for…</strong> on the field you want to calculate</li>
+              <li>Enter values in the other two fields</li>
+              <li>Hit <strong>Calculate</strong></li>
+            </ul>
+            <div class="formula-legend">
+              <div><span class="pill">CPM</span> Cost per thousand impressions</div>
+              <div><span class="pill">Cost</span> Total campaign spend ($)</div>
+              <div><span class="pill">Impressions</span> Total ad impressions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ COMPARE TAB ═══════════════════ -->
+    <section class="tab-section" id="tab-compare">
+      <div class="section-header">
+        <div>
+          <h1>Product Comparison</h1>
+          <p class="subtitle">Compare CPMs and budget scenarios across products</p>
+        </div>
+      </div>
+
+      <div class="compare-layout">
+        <div class="compare-setup">
+          <div class="compare-card">
+            <h3>Select Products to Compare</h3>
+            <div id="compareProductList" class="compare-product-list"></div>
+          </div>
+          <div class="compare-card">
+            <h3>Budget Scenario</h3>
+            <p>Enter a total budget to see estimated impressions per product</p>
+            <div class="input-row">
+              <span class="input-prefix">$</span>
+              <input type="number" id="compareBudget" placeholder="e.g. 50000" step="100" min="0" />
+            </div>
+          </div>
+        </div>
+
+        <div id="compareResults" class="compare-results"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════ ADD/EDIT PRODUCT MODAL ═══════════════════ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Product</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Product Name <span class="required">*</span></label>
+          <input type="text" id="formName" placeholder="e.g. Homepage Takeover" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="formCategory" placeholder="e.g. Display, Video, Native" list="categoryList" />
+            <datalist id="categoryList"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Retail CPM ($) <span class="required">*</span></label>
+            <input type="number" id="formCpm" placeholder="e.g. 12.50" step="0.01" min="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Min Impressions</label>
+            <input type="number" id="formMinImpressions" placeholder="optional" step="1000" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Dimensions / Specs</label>
+            <input type="text" id="formSpecs" placeholder="e.g. 300×250, 728×90" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea id="formNotes" placeholder="Any additional details…" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="modalCancel">Cancel</button>
+        <button class="btn-primary" id="modalSave">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOAST ═══════════════════ -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
