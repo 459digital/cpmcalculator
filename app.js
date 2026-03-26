@@ -4,18 +4,100 @@
 
 // ── DEFAULT PRODUCTS ──────────────────────────────────────────────────
 const DEFAULT_PRODUCTS = [
-  { id: 'p1',  name: 'Homepage Takeover',       category: 'Display',     cpm: 28.00, minImpressions: 100000, specs: '1920×1080, 300×250', notes: 'Premium homepage placement' },
-  { id: 'p2',  name: 'Leaderboard Banner',       category: 'Display',     cpm: 8.50,  minImpressions: 250000, specs: '728×90', notes: '' },
-  { id: 'p3',  name: 'Medium Rectangle',         category: 'Display',     cpm: 6.00,  minImpressions: 250000, specs: '300×250', notes: '' },
-  { id: 'p4',  name: 'Pre-Roll Video (15s)',      category: 'Video',       cpm: 22.00, minImpressions: 50000,  specs: '16:9, :15', notes: 'Skippable after 5s' },
-  { id: 'p5',  name: 'Pre-Roll Video (30s)',      category: 'Video',       cpm: 28.00, minImpressions: 50000,  specs: '16:9, :30', notes: 'Non-skippable' },
-  { id: 'p6',  name: 'Mid-Roll Video',            category: 'Video',       cpm: 32.00, minImpressions: 25000,  specs: '16:9, :15–:30', notes: 'In-content placement' },
-  { id: 'p7',  name: 'Sponsored Content',         category: 'Native',      cpm: 18.00, minImpressions: 100000, specs: 'Article format', notes: 'Editorial-style placement' },
-  { id: 'p8',  name: 'In-Feed Native',            category: 'Native',      cpm: 12.00, minImpressions: 150000, specs: '600×400 image', notes: '' },
-  { id: 'p9',  name: 'Email Newsletter',          category: 'Email',       cpm: 45.00, minImpressions: 10000,  specs: '600×200 header', notes: 'Weekly send, 35% open rate' },
-  { id: 'p10', name: 'Email Dedicated Blast',     category: 'Email',       cpm: 65.00, minImpressions: 5000,   specs: '600px wide', notes: 'Solo send to full list' },
-  { id: 'p11', name: 'Podcast Host-Read Ad (:30)', category: 'Audio',      cpm: 25.00, minImpressions: 10000,  specs: ':30 host-read', notes: 'CPM based on downloads' },
-  { id: 'p12', name: 'Programmatic Display',      category: 'Programmatic',cpm: 3.50,  minImpressions: 500000, specs: 'Various IAB sizes', notes: 'Floor CPM; actual may vary' },
+  // ── Audio ──
+  { id: 'p001', name: 'Addressable Streaming Audio',       category: 'Audio',       cpm: 38.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p002', name: 'Streaming Audio',                   category: 'Audio',       cpm: 35.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  // ── CTV / OTT ──
+  { id: 'p003', name: 'Addressable CTV 100',               category: 'CTV / OTT',  cpm: 40.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p004', name: 'Addressable CTV 65',                category: 'CTV / OTT',  cpm: 30.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p005', name: 'Addressable CTV 90',                category: 'CTV / OTT',  cpm: 36.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p006', name: 'CTV 100',                           category: 'CTV / OTT',  cpm: 37.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p007', name: 'CTV 65',                            category: 'CTV / OTT',  cpm: 27.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p008', name: 'CTV 90',                            category: 'CTV / OTT',  cpm: 33.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p009', name: 'Premium CTV',                       category: 'CTV / OTT',  cpm: 66.00, minImpressions: 0, specs: 'Hulu, Paramount+, Peacock, Max, Discovery+, Disney+', notes: 'Nexstar minimum $1,000/month; no guarantees of delivery on each network' },
+  { id: 'p010', name: 'Streaming+',                        category: 'CTV / OTT',  cpm: 42.00, minImpressions: 0, specs: 'HuluLive, Philo, SlingTV, RokuTV, Fubo', notes: 'Nexstar minimum $1,000/month; up to 10% on HuluLive' },
+  { id: 'p011', name: 'Spanish Language OTT',              category: 'CTV / OTT',  cpm: 48.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $1,000/month' },
+  { id: 'p012', name: 'Streaming Sports: Sports OTT – Live and On Demand', category: 'CTV / OTT', cpm: 60.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p013', name: 'Fox 59 Now CTV App',                category: 'CTV / OTT',  cpm: 20.00, minImpressions: 0, specs: 'AppleTV, FireTV, Roku, Samsung', notes: '' },
+  // ── Live Sports ──
+  { id: 'p014', name: 'Live Sports RON',                   category: 'Live Sports', cpm: 75.00,  minImpressions: 0, specs: '', notes: 'Nexstar minimum $1,000/month; no game level or sport type' },
+  { id: 'p015', name: 'Live Sports – Basketball',          category: 'Live Sports', cpm: 108.00, minImpressions: 0, specs: 'Regular Season, Now–Apr 2026', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p016', name: 'Live Sports – March Mania',         category: 'Live Sports', cpm: 155.00, minImpressions: 0, specs: 'Mar 15–Apr 6, 2026', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p017', name: 'Live Sports – Olympics',            category: 'Live Sports', cpm: 122.00, minImpressions: 0, specs: 'Feb 6–22, 2026', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p018', name: 'Live Sports – Soccer',              category: 'Live Sports', cpm: 65.00,  minImpressions: 0, specs: 'Regular Season, Feb–Oct 2026', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p019', name: 'Live Sports – Hockey (NHL)',        category: 'Live Sports', cpm: 87.00,  minImpressions: 0, specs: 'Regular Season, Now–Apr 2026', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p020', name: 'Live Sports – Motorsports',         category: 'Live Sports', cpm: 70.00,  minImpressions: 0, specs: 'Feb–Nov', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p021', name: 'Live Sports – Baseball/MLB',        category: 'Live Sports', cpm: 82.00,  minImpressions: 0, specs: 'Mar–Sep Regular Season', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p022', name: 'Live Sports – Golf',                category: 'Live Sports', cpm: 77.00,  minImpressions: 0, specs: 'Jan–Aug', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  { id: 'p023', name: 'Live Sports – Tennis',              category: 'Live Sports', cpm: 88.00,  minImpressions: 0, specs: 'Jan–Sep', notes: '$1,000/month minimum; delivery not guaranteed; geo-target only; see collateral for network/platform exclusions' },
+  // ── Display ──
+  { id: 'p024', name: 'Addressable Display',               category: 'Display',     cpm: 14.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p025', name: 'Display',                           category: 'Display',     cpm: 9.00,  minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p026', name: 'GeoFence',                          category: 'Display',     cpm: 12.00, minImpressions: 0, specs: '', notes: 'No minimum for geofence' },
+  { id: 'p027', name: 'Keyword Display',                   category: 'Display',     cpm: 12.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display' },
+  { id: 'p028', name: 'Run-of-Site Display Ads',           category: 'Display',     cpm: 8.00,  minImpressions: 0, specs: '300×250, 728×90, 320×50, 300×600', notes: '' },
+  { id: 'p029', name: 'Run-of-Site Billboard',             category: 'Display',     cpm: 12.00, minImpressions: 0, specs: '970×250', notes: '' },
+  { id: 'p030', name: 'Run-of-Site Expandable/Retractable', category: 'Display',   cpm: 12.00, minImpressions: 0, specs: '300×250, 728×90', notes: '' },
+  { id: 'p031', name: 'Run-of-Site Display w/ In-Banner Video', category: 'Display', cpm: 15.00, minImpressions: 0, specs: 'In-Banner Video', notes: '' },
+  { id: 'p032', name: 'Point-of-Entry Takeover Display',   category: 'Display',     cpm: 12.00, minImpressions: 0, specs: '970×250, 728×90, 300×250, 300×600, 320×50', notes: '' },
+  { id: 'p033', name: 'Social Display Ads (Website & News App)', category: 'Display', cpm: 11.00, minImpressions: 0, specs: '300×250 Only', notes: '' },
+  { id: 'p034', name: 'Masthead Header Microbar (Weather Widget)', category: 'Display', cpm: 10.00, minImpressions: 0, specs: '88×31', notes: '' },
+  { id: 'p035', name: 'NAN – Display CPM RON',             category: 'Display',     cpm: 6.00,  minImpressions: 0, specs: '', notes: 'Campaigns can target audiences by geography' },
+  // ── DOOH ──
+  { id: 'p036', name: 'DOOH – Display',                    category: 'DOOH',        cpm: 20.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  { id: 'p037', name: 'DOOH – Video',                      category: 'DOOH',        cpm: 31.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month' },
+  // ── Video / PreRoll ──
+  { id: 'p038', name: 'Addressable PreRoll',               category: 'Video',       cpm: 25.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p039', name: 'GeoVideo',                          category: 'Video',       cpm: 22.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p040', name: 'Keyword PreRoll',                   category: 'Video',       cpm: 24.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p041', name: 'PreRoll',                           category: 'Video',       cpm: 22.00, minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month display; no minimum for geofence' },
+  { id: 'p042', name: 'Run-of-Site PreRoll',               category: 'Video',       cpm: 25.00, minImpressions: 0, specs: ':15 or less', notes: '' },
+  { id: 'p043', name: 'LiveStreaming',                      category: 'Video',       cpm: 25.00, minImpressions: 0, specs: ':15 or less', notes: '' },
+  { id: 'p044', name: 'NAN – Video CPM RON',               category: 'Video',       cpm: 20.00, minImpressions: 0, specs: 'OLV, livestream, outstream', notes: 'Station O&O, The Hill and NewsNation' },
+  { id: 'p045', name: 'NAN – Video OTT/CTV CPM RON',       category: 'Video',       cpm: 25.00, minImpressions: 0, specs: '', notes: 'Station O&O, The Hill and NewsNation' },
+  { id: 'p046', name: 'YouTube (CPCV)',                    category: 'Video',       cpm: 0.10,  minImpressions: 0, specs: '', notes: 'Nexstar minimum $500/month; note: CPCV pricing' },
+  // ── Email ──
+  { id: 'p047', name: 'Email Marketing',                   category: 'Email',       cpm: 25.00, minImpressions: 50000, specs: '', notes: 'Minimum COG $300 on initial or resend; minimum list 50,000' },
+  { id: 'p048', name: 'Email Marketing (Postal File)',      category: 'Email',       cpm: 30.00, minImpressions: 0, specs: '', notes: 'No minimum' },
+  // ── Amazon ──
+  { id: 'p049', name: 'Amazon O&O Premium: Prime Video + STV First Access', category: 'Amazon', cpm: 48.00, minImpressions: 0, specs: '', notes: 'Minimum $5,000/month with 3-month minimum' },
+  { id: 'p050', name: 'Amazon STV Performance: STV + Display',              category: 'Amazon', cpm: 24.00, minImpressions: 0, specs: '', notes: 'Minimum $4,000/month with 3-month minimum' },
+  { id: 'p051', name: 'Amazon STV Efficiency: STV + OLV',                   category: 'Amazon', cpm: 26.00, minImpressions: 0, specs: '', notes: 'Minimum $2,500/month with 3-month minimum' },
+  { id: 'p052', name: 'STV Premium',                                         category: 'Amazon', cpm: 70.00, minImpressions: 0, specs: 'PrimeVideo, YTTV, Discovery+, Peacock, MAX, Hulu/Disney, Netflix', notes: 'Minimum $10,000/month with 3-month minimum; no guaranteed distribution % per channel' },
+  { id: 'p053', name: 'Amazon Display',                                      category: 'Amazon', cpm: 11.00, minImpressions: 0, specs: '', notes: 'Minimum $1,000/month with 3-month minimum' },
+  { id: 'p054', name: 'Amazon Online Digital Video',                         category: 'Amazon', cpm: 19.00, minImpressions: 0, specs: 'Amazon, Amazon Publisher Direct, DV360', notes: 'Minimum $1,000/month with 3-month minimum' },
+  { id: 'p055', name: 'AMC MatchBack Report',                                category: 'Amazon', cpm: 1.00,  minImpressions: 0, specs: '', notes: 'Add CPM to digital product. Quarterly: $10k/month min, 3 months or $30k IO. Monthly: $20k/month min.' },
+  // ── YTTV ──
+  { id: 'p056', name: 'YTTV (RON) :15 Non-Skip',           category: 'YTTV',        cpm: 69.00,  minImpressions: 0, specs: ':15', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  { id: 'p057', name: 'YTTV (RON) :30 Non-Skip',           category: 'YTTV',        cpm: 87.00,  minImpressions: 0, specs: ':30', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  { id: 'p058', name: 'YTTV (RON) :60 Non-Skip',           category: 'YTTV',        cpm: 157.00, minImpressions: 0, specs: ':60', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  { id: 'p059', name: 'YTTV (RON – Sports) :15 Non-Skip',  category: 'YTTV',        cpm: 99.00,  minImpressions: 0, specs: ':15', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  { id: 'p060', name: 'YTTV (RON – Sports) :30 Non-Skip',  category: 'YTTV',        cpm: 117.00, minImpressions: 0, specs: ':30', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  { id: 'p061', name: 'YTTV (RON – Sports) :60 Non-Skip',  category: 'YTTV',        cpm: 215.00, minImpressions: 0, specs: ':60', notes: 'Add YTTV to Product Description; minimum $5k/month for 3 months' },
+  // ── VDS ──
+  { id: 'p062', name: 'VDS Digital Audio',                 category: 'VDS',         cpm: 38.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p063', name: 'VDS Preroll Video AT',              category: 'VDS',         cpm: 22.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p064', name: 'VDS Display AT',                    category: 'VDS',         cpm: 12.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p065', name: 'VDS Display Device ID',             category: 'VDS',         cpm: 18.00, minImpressions: 120000, specs: '', notes: 'Min 120,000 impressions total; min 40,000/month over 3 months; pre-sale audit required' },
+  { id: 'p066', name: 'VDS Display Device ID AT',          category: 'VDS',         cpm: 20.00, minImpressions: 120000, specs: '', notes: 'Min 120,000 impressions total; min 40,000/month over 3 months; pre-sale audit required' },
+  { id: 'p067', name: 'VDS CTV',                           category: 'VDS',         cpm: 35.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p068', name: 'VDS CTV AT',                        category: 'VDS',         cpm: 40.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p069', name: 'VDS CTV 90/OTT 10',                category: 'VDS',         cpm: 32.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p070', name: 'VDS CTV 90/OTT 10 AT',             category: 'VDS',         cpm: 38.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p071', name: 'VDS CTV 65/OTT 30',                category: 'VDS',         cpm: 30.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  { id: 'p072', name: 'VDS CTV 65/OTT 30 AT',             category: 'VDS',         cpm: 32.00, minImpressions: 0, specs: '', notes: 'Only available for agencies with spend over $150k' },
+  // ── WeatherCo ──
+  { id: 'p073', name: 'WeatherCo Mobile APP ROS 300×250',         category: 'WeatherCo', cpm: 10.00, minImpressions: 0, specs: '300×250', notes: '' },
+  { id: 'p074', name: 'WeatherCo Mobile APP ROS 320×50',          category: 'WeatherCo', cpm: 5.00,  minImpressions: 0, specs: '320×50', notes: '' },
+  { id: 'p075', name: 'WeatherCo Mobile APP Home Screen 320×50',  category: 'WeatherCo', cpm: 6.00,  minImpressions: 0, specs: '320×50', notes: '' },
+  { id: 'p076', name: 'WeatherCo Mobile APP PreRoll ROS',         category: 'WeatherCo', cpm: 22.00, minImpressions: 0, specs: ':15 or :30', notes: 'Mobile app only; geo-targeting only; autoplay; unskippable up to :15' },
+  { id: 'p077', name: 'WeatherCo Web ROS 728×90, 300×600',        category: 'WeatherCo', cpm: 14.00, minImpressions: 0, specs: '728×90, 300×600', notes: '' },
+  { id: 'p078', name: 'WeatherCo Web ROS 300×250',                category: 'WeatherCo', cpm: 14.00, minImpressions: 0, specs: '300×250', notes: '' },
+  { id: 'p079', name: 'WeatherCo Web Billboard',                  category: 'WeatherCo', cpm: 14.00, minImpressions: 0, specs: 'Desktop billboard', notes: '' },
+  { id: 'p080', name: 'WeatherCo Mobile Integrated Marquee',      category: 'WeatherCo', cpm: 17.00, minImpressions: 0, specs: 'Mobile App Only', notes: 'MINIMUM $100,000 retail; non-cancelable' },
+  { id: 'p081', name: 'Weather CO Add-on: Weather Conditions',    category: 'WeatherCo', cpm: 3.00,  minImpressions: 0, specs: '', notes: 'Add CPM to digital product using same WO Digital Product' },
+  { id: 'p082', name: 'Weather CO Add-on: 3P Data',               category: 'WeatherCo', cpm: 4.00,  minImpressions: 0, specs: '', notes: 'Add CPM to digital product using same WO Digital Product' },
+  { id: 'p083', name: 'Weather CO Add-on: 1P Data',               category: 'WeatherCo', cpm: 4.00,  minImpressions: 0, specs: '', notes: 'Add CPM to digital product using same WO Digital Product' },
 ];
 
 // ── STATE ──────────────────────────────────────────────────────────────
@@ -26,10 +108,13 @@ let sortDir = 'asc';
 let sortField = 'name';
 
 // ── STORAGE ────────────────────────────────────────────────────────────
+const DATA_VERSION = '2'; // bump to reset all browsers to new defaults
+
 function loadProducts() {
   try {
+    const version = localStorage.getItem('cpm_version');
     const raw = localStorage.getItem('cpm_products');
-    if (raw) {
+    if (raw && version === DATA_VERSION) {
       products = JSON.parse(raw);
     } else {
       products = DEFAULT_PRODUCTS.map(p => ({ ...p }));
@@ -42,6 +127,7 @@ function loadProducts() {
 
 function saveProducts() {
   localStorage.setItem('cpm_products', JSON.stringify(products));
+  localStorage.setItem('cpm_version', DATA_VERSION);
 }
 
 function genId() {
