@@ -212,9 +212,7 @@ function renderProducts() {
         ${p.notes ? `<span>📝 ${escHtml(p.notes)}</span>` : ''}
       </div>
       <div class="product-actions">
-        <button class="product-btn" onclick="editProduct('${p.id}')">✏ Edit</button>
-        <button class="product-btn" onclick="fillCalc('${p.id}')">⚡ Use in Calc</button>
-        <button class="product-btn danger" onclick="deleteProduct('${p.id}')">✕ Delete</button>
+        <button class="product-btn" onclick="fillCalc('${p.id}')">⚡ Use in Calculation</button>
       </div>
     </div>
   `).join('');
