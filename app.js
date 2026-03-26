@@ -289,12 +289,7 @@ function clearModalForm() {
     .forEach(id => document.getElementById(id).value = '');
 }
 
-document.getElementById('openAddModal').addEventListener('click', () => {
-  editingId = null;
-  document.getElementById('modalTitle').textContent = 'Add Product';
-  clearModalForm();
-  openModal();
-});
+
 document.getElementById('modalClose').addEventListener('click', closeModal);
 document.getElementById('modalCancel').addEventListener('click', closeModal);
 document.getElementById('modalOverlay').addEventListener('click', e => {
