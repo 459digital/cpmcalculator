@@ -21,6 +21,7 @@
         <button class="nav-btn active" data-tab="products">Products</button>
         <button class="nav-btn" data-tab="calculator">Calculator</button>
         <button class="nav-btn" data-tab="compare">Compare</button>
+        <button class="nav-btn" data-tab="package">Package Builder</button>
       </nav>
       <div class="header-tag">Media Planning Tool</div>
     </div>
@@ -28,7 +29,7 @@
 
   <main>
 
-    <!-- ═══════════════════ PRODUCTS TAB ═══════════════════ -->
+    <!-- PRODUCTS TAB -->
     <section class="tab-section active" id="tab-products">
       <div class="section-header">
         <div>
@@ -36,29 +37,31 @@
           <p class="subtitle">Retail CPMs for all active products</p>
         </div>
       </div>
-
       <div class="filter-bar">
-        <input type="text" id="searchProducts" class="search-input" placeholder="Search products…" />
+        <input type="text" id="searchProducts" class="search-input" placeholder="Search products..." />
         <select id="filterCategory" class="select-input">
           <option value="">All Categories</option>
         </select>
-        <button class="btn-ghost" id="sortToggle" data-sort="name">Sort: Name ↑</button>
+        <button class="btn-ghost" id="sortToggle" data-sort="name">Sort: Name up</button>
       </div>
-
       <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <!-- ═══════════════════ CALCULATOR TAB ═══════════════════ -->
+    <!-- CALCULATOR TAB -->
     <section class="tab-section" id="tab-calculator">
       <div class="section-header">
         <div>
           <h1>CPM Calculator</h1>
-          <p class="subtitle">Solve for any variable — provide two, get the third</p>
+          <p class="subtitle">Solve for any variable - provide two, get the third</p>
         </div>
       </div>
-
       <div class="calc-layout">
         <div class="calc-card">
+          <div class="calc-context" id="calcContext">
+            <span class="calc-context-label">Using product:</span>
+            <span class="calc-context-name" id="calcContextName"></span>
+            <button class="calc-context-clear" id="calcContextClear">x Clear</button>
+          </div>
           <div class="calc-formula">
             <span class="formula-part" data-field="cpm">CPM</span>
             <span class="formula-op">=</span>
@@ -67,67 +70,51 @@
               <span class="formula-divider"></span>
               <span class="formula-part" data-field="impressions">Impressions</span>
             </div>
-            <span class="formula-op">×</span>
+            <span class="formula-op">x</span>
             <span class="formula-const">1,000</span>
           </div>
-
           <div class="calc-inputs">
             <div class="calc-field" id="field-cpm">
-              <label>
-                CPM
-                <span class="field-badge solve">solve</span>
-              </label>
+              <label>CPM <span class="field-badge">solve</span></label>
               <div class="input-row">
                 <span class="input-prefix">$</span>
-                <input type="number" id="input-cpm" placeholder="—" step="0.01" min="0" />
+                <input type="number" id="input-cpm" placeholder="--" step="0.01" min="0" />
               </div>
               <button class="solve-btn active" data-target="cpm">Solve for CPM</button>
             </div>
-
             <div class="calc-field" id="field-cost">
-              <label>
-                Total Cost
-                <span class="field-badge"></span>
-              </label>
+              <label>Total Cost <span class="field-badge"></span></label>
               <div class="input-row">
                 <span class="input-prefix">$</span>
-                <input type="number" id="input-cost" placeholder="—" step="0.01" min="0" />
+                <input type="number" id="input-cost" placeholder="--" step="0.01" min="0" />
               </div>
               <button class="solve-btn" data-target="cost">Solve for Cost</button>
             </div>
-
             <div class="calc-field" id="field-impressions">
-              <label>
-                Impressions
-                <span class="field-badge"></span>
-              </label>
+              <label>Impressions <span class="field-badge"></span></label>
               <div class="input-row">
                 <span class="input-prefix">#</span>
-                <input type="number" id="input-impressions" placeholder="—" step="1" min="0" />
+                <input type="number" id="input-impressions" placeholder="--" step="1" min="0" />
               </div>
               <button class="solve-btn" data-target="impressions">Solve for Impressions</button>
             </div>
           </div>
-
           <div class="calc-actions">
             <button class="btn-primary" id="calcSolve">Calculate</button>
             <button class="btn-ghost" id="calcClear">Clear</button>
           </div>
-
           <div class="calc-result" id="calcResult"></div>
         </div>
-
         <div class="calc-sidebar">
           <div class="quick-fill-card">
             <h3>Quick Fill from Products</h3>
-            <p>Select a product to auto-fill its CPM</p>
+            <p>Select a product to load its CPM</p>
             <div id="quickFillList" class="quick-fill-list"></div>
           </div>
-
           <div class="tips-card">
             <h3>How to use</h3>
             <ul>
-              <li>Click <strong>Solve for…</strong> on the field you want to calculate</li>
+              <li>Click <strong>Solve for...</strong> on the field you want to calculate</li>
               <li>Enter values in the other two fields</li>
               <li>Hit <strong>Calculate</strong></li>
             </ul>
@@ -141,7 +128,7 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ COMPARE TAB ═══════════════════ -->
+    <!-- COMPARE TAB -->
     <section class="tab-section" id="tab-compare">
       <div class="section-header">
         <div>
@@ -149,7 +136,6 @@
           <p class="subtitle">Compare CPMs and budget scenarios across products</p>
         </div>
       </div>
-
       <div class="compare-layout">
         <div class="compare-setup">
           <div class="compare-card">
@@ -165,19 +151,76 @@
             </div>
           </div>
         </div>
-
         <div id="compareResults" class="compare-results"></div>
+      </div>
+    </section>
+
+    <!-- PACKAGE BUILDER TAB -->
+    <section class="tab-section" id="tab-package">
+      <div class="section-header">
+        <div>
+          <h1>Package Builder</h1>
+          <p class="subtitle">Combine products, allocate budget, and see your blended CPM</p>
+        </div>
+        <button class="btn-ghost" id="pkgClearAll">Clear Package</button>
+      </div>
+      <div class="pkg-layout">
+        <div class="pkg-picker">
+          <div class="pkg-picker-header">
+            <input type="text" id="pkgSearch" class="search-input" placeholder="Search products..." />
+            <select id="pkgFilterCategory" class="select-input">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+          <div id="pkgProductList" class="pkg-product-list"></div>
+        </div>
+        <div class="pkg-workspace">
+          <div class="pkg-budget-row">
+            <div class="pkg-budget-label">Total Package Budget</div>
+            <div class="input-row pkg-budget-input">
+              <span class="input-prefix">$</span>
+              <input type="number" id="pkgBudget" placeholder="e.g. 5000" step="100" min="0" />
+            </div>
+            <button class="btn-primary" id="pkgDistribute">Distribute Evenly</button>
+          </div>
+          <div id="pkgLineItems" class="pkg-line-items">
+            <div class="pkg-empty">
+              <div class="pkg-empty-icon">&#128230;</div>
+              <div>Select products from the left to build your package</div>
+            </div>
+          </div>
+          <div class="pkg-summary" id="pkgSummary">
+            <div class="pkg-summary-grid">
+              <div class="pkg-summary-item">
+                <div class="pkg-summary-label">Total Budget</div>
+                <div class="pkg-summary-value" id="pkgTotalBudget">$0.00</div>
+              </div>
+              <div class="pkg-summary-item">
+                <div class="pkg-summary-label">Total Impressions</div>
+                <div class="pkg-summary-value" id="pkgTotalImpressions">0</div>
+              </div>
+              <div class="pkg-summary-item highlight">
+                <div class="pkg-summary-label">Blended CPM</div>
+                <div class="pkg-summary-value accent" id="pkgBlendedCpm">--</div>
+              </div>
+              <div class="pkg-summary-item">
+                <div class="pkg-summary-label">Products in Package</div>
+                <div class="pkg-summary-value" id="pkgProductCount">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ═══════════════════ ADD/EDIT PRODUCT MODAL ═══════════════════ -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-header">
         <h2 id="modalTitle">Add Product</h2>
-        <button class="modal-close" id="modalClose">✕</button>
+        <button class="modal-close" id="modalClose">x</button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -202,12 +245,12 @@
           </div>
           <div class="form-group">
             <label>Dimensions / Specs</label>
-            <input type="text" id="formSpecs" placeholder="e.g. 300×250, 728×90" />
+            <input type="text" id="formSpecs" placeholder="e.g. 300x250, 728x90" />
           </div>
         </div>
         <div class="form-group">
           <label>Notes</label>
-          <textarea id="formNotes" placeholder="Any additional details…" rows="2"></textarea>
+          <textarea id="formNotes" placeholder="Any additional details..." rows="2"></textarea>
         </div>
       </div>
       <div class="modal-footer">
@@ -217,9 +260,7 @@
     </div>
   </div>
 
-  <!-- ═══════════════════ TOAST ═══════════════════ -->
   <div class="toast" id="toast"></div>
-
   <script src="app.js"></script>
 </body>
 </html>
