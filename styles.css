@@ -218,20 +218,26 @@ h1 {
    PRODUCTS GRID
 ───────────────────────────────────────── */
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .product-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 16px 24px;
   transition: all .2s;
   position: relative;
   overflow: hidden;
   animation: fadeUp .3s ease both;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 32px;
+  row-gap: 4px;
 }
 .product-card::before {
   content: '';
@@ -251,10 +257,10 @@ h1 {
 
 .product-card-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 12px;
+  align-items: center;
+  gap: 10px;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .product-name {
@@ -280,37 +286,43 @@ h1 {
 
 .product-cpm {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
   color: var(--accent);
   letter-spacing: -.03em;
   line-height: 1;
-  margin-bottom: 4px;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
 }
 .product-cpm-label {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-muted);
   letter-spacing: .06em;
   text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 12px;
+  grid-column: 2;
+  grid-row: 2;
+  text-align: right;
 }
 
 .product-meta {
   font-size: 12px;
   color: var(--text-muted);
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-  margin-top: 4px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .product-actions {
   display: flex;
   gap: 6px;
-  margin-top: 14px;
+  grid-column: 3;
+  grid-row: 1 / 3;
+  align-items: center;
 }
 
 .product-btn {
