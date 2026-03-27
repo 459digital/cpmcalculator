@@ -418,14 +418,31 @@ let selectedForCompare = new Set();
 
 function renderCompare() {
   const list = document.getElementById('compareProductList');
-  const sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
+  const catSel = document.getElementById('compareCategory');
+
+  // Populate category dropdown
+  if (catSel) {
+    const cur = catSel.value;
+    const cats = getCategories();
+    catSel.innerHTML = '<option value="">All Categories</option>' +
+      cats.map(c => `<option value="${c}" ${c === cur ? 'selected' : ''}>${c}</option>`).join('');
+  }
+
+  const selectedCat = catSel ? catSel.value : '';
+  const sorted = [...products]
+    .filter(p => !selectedCat || p.category === selectedCat)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   if (sorted.length === 0) {
-    list.innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:8px 0;">No products yet.</div>';
+    list.innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:8px 0;">No products match.</div>';
   } else {
     list.innerHTML = sorted.map(p => `
       <label class="compare-check-item ${selectedForCompare.has(p.id) ? 'selected' : ''}">
         <input type="checkbox" value="${p.id}" ${selectedForCompare.has(p.id) ? 'checked' : ''} onchange="toggleCompare('${p.id}', this.checked)" />
-        <span class="cc-name">${escHtml(p.name)}</span>
+        <span class="cc-info">
+          <span class="cc-name">${escHtml(p.name)}</span>
+          ${p.category ? `<span class="cc-cat">${escHtml(p.category)}</span>` : ''}
+        </span>
         <span class="cc-cpm">$${formatCpm(p.cpm)}</span>
       </label>
     `).join('');
@@ -470,7 +487,6 @@ function renderCompareTable() {
       <td class="td-cpm">$${formatCpm(p.cpm)}</td>
       <td class="td-bar"><div class="cpm-bar-bg"><div class="cpm-bar-fill" style="width:${barWidth}%"></div></div></td>
       ${budget > 0 ? `<td class="td-impressions has-budget">${formatNum(impsForBudget)}</td>` : `<td class="td-impressions">&mdash;</td>`}
-      ${p.minImpressions ? `<td class="td-impressions">${formatNum(p.minImpressions)}</td>` : '<td class="td-impressions">&mdash;</td>'}
     </tr>`;
   }).join('');
 
@@ -478,7 +494,6 @@ function renderCompareTable() {
     <thead><tr>
       <th>Product</th><th>Category</th><th>CPM</th><th>Relative Cost</th>
       <th>${budget > 0 ? 'Impressions ($' + formatMoney(budget) + ' budget)' : 'Impressions'}</th>
-      <th>Min Impressions</th>
     </tr></thead>
     <tbody>${rows}</tbody>
     <tfoot><tr style="border-top:2px solid var(--border2)">
@@ -486,7 +501,6 @@ function renderCompareTable() {
       <td class="td-cpm" style="font-size:14px;">avg $${formatCpm(avgCpm)}</td>
       <td></td>
       <td class="td-impressions ${budget > 0 ? 'has-budget' : ''}">${budget > 0 ? formatNum(Math.round((budget / avgCpm) * 1000)) + ' avg' : '&mdash;'}</td>
-      <td></td>
     </tr></tfoot>
   </table></div>`;
 }
