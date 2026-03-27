@@ -667,6 +667,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 16px;
+  align-items: stretch;
 }
 
 @media (max-width: 760px) {
@@ -678,6 +679,17 @@ h1 {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
+}
+
+/* Left product card stretches and lets the list fill remaining space */
+.compare-card--products {
+  display: flex;
+  flex-direction: column;
+}
+.compare-card--products .compare-product-list {
+  flex: 1;
+  max-height: none;
+  min-height: 0;
 }
 
 .compare-card h3 {
@@ -698,6 +710,7 @@ h1 {
   gap: 6px;
   max-height: 380px;
   overflow-y: auto;
+  min-height: 120px;
 }
 
 .compare-check-item {

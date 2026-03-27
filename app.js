@@ -648,8 +648,8 @@ function updatePackageSummary() {
   const blendedCpm = totalImpressions > 0 ? (totalBudget / totalImpressions) * 1000 : 0;
 
   document.getElementById('pkgTotalBudget').textContent = '$' + formatMoney(totalBudget);
-  document.getElementById('pkgTotalImpressions').textContent = totalImpressions > 0 ? formatNum(totalImpressions) : '&mdash;';
-  document.getElementById('pkgBlendedCpm').textContent = blendedCpm > 0 ? '$' + formatCpm(blendedCpm) : '&mdash;';
+  document.getElementById('pkgTotalImpressions').textContent = totalImpressions > 0 ? formatNum(totalImpressions) : '0';
+  document.getElementById('pkgBlendedCpm').textContent = blendedCpm > 0 ? '$' + formatCpm(blendedCpm) : '$0.00';
   document.getElementById('pkgProductCount').textContent = packageItems.length;
 }
 
