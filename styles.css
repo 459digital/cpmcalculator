@@ -1321,3 +1321,25 @@ tr:hover td { background: var(--surface2); }
   width: 100%;
   font-size: 13px;
 }
+
+/* Compare table remove button */
+.td-remove { width: 40px; text-align: center; }
+.compare-remove-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 6px;
+  width: 28px; height: 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  line-height: 1;
+}
+.compare-remove-btn:hover {
+  border-color: var(--accent3);
+  color: var(--accent3);
+  background: rgba(224,62,62,.06);
+}

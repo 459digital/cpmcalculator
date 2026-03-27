@@ -462,6 +462,11 @@ function toggleCompare(id, checked) {
   renderCompareTable();
 }
 
+function removeFromCompare(id) {
+  selectedForCompare.delete(id);
+  renderCompare();
+}
+
 document.getElementById('compareBudget').addEventListener('input', renderCompareTable);
 
 function renderCompareTable() {
@@ -487,6 +492,7 @@ function renderCompareTable() {
       <td class="td-cpm">$${formatCpm(p.cpm)}</td>
       <td class="td-bar"><div class="cpm-bar-bg"><div class="cpm-bar-fill" style="width:${barWidth}%"></div></div></td>
       ${budget > 0 ? `<td class="td-impressions has-budget">${formatNum(impsForBudget)}</td>` : `<td class="td-impressions">&mdash;</td>`}
+      <td class="td-remove"><button class="compare-remove-btn" onclick="removeFromCompare('${p.id}')" title="Remove">&#215;</button></td>
     </tr>`;
   }).join('');
 
@@ -494,6 +500,7 @@ function renderCompareTable() {
     <thead><tr>
       <th>Product</th><th>Category</th><th>CPM</th><th>Relative Cost</th>
       <th>${budget > 0 ? 'Impressions ($' + formatMoney(budget) + ' budget)' : 'Impressions'}</th>
+      <th></th>
     </tr></thead>
     <tbody>${rows}</tbody>
   </table></div>`;
