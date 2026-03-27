@@ -365,6 +365,9 @@ h1 {
   .calc-layout { grid-template-columns: 1fr; }
 }
 
+/* Stretch sidebar to match calc card height */
+.calc-layout { align-items: stretch; }
+
 .calc-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -570,6 +573,23 @@ h1 {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 20px;
+}
+
+/* Sidebar fills full height of the grid row */
+.calc-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.calc-sidebar .quick-fill-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.calc-sidebar .quick-fill-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .quick-fill-card h3, .tips-card h3 {
@@ -1244,4 +1264,52 @@ tr:hover td { background: var(--surface2); }
 .pkg-budget-field {
   width: 100%;
   font-size: 14px;
+}
+
+/* ── INLINE TIPS BAR (above calculator) ── */
+.tips-card--inline {
+  margin-bottom: 20px;
+  padding: 16px 24px;
+}
+.tips-inline-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.tips-steps h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.tips-steps ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.tips-steps li { padding-left: 14px; position: relative; }
+.tips-steps li::before { content: "->"; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 1px; }
+.tips-card--inline .formula-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
+}
+.tips-card--inline .formula-legend > div { display: flex; align-items: center; gap: 8px; }
+
+/* ── QUICK FILL CATEGORY FILTER ── */
+.quick-fill-filters {
+  margin-bottom: 10px;
+}
+.quick-fill-filters .select-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 7px 12px;
 }

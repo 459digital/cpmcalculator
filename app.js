@@ -379,17 +379,34 @@ function clearResult() {
 
 function renderQuickFill() {
   const list = document.getElementById('quickFillList');
+  const catSel = document.getElementById('quickFillCategory');
+
+  // Populate category dropdown
+  if (catSel) {
+    const cur = catSel.value;
+    const cats = getCategories();
+    catSel.innerHTML = '<option value="">All Categories</option>' +
+      cats.map(c => `<option value="${c}" ${c === cur ? 'selected' : ''}>${c}</option>`).join('');
+  }
+
   if (products.length === 0) {
     list.innerHTML = '<div style="color:var(--text-muted);font-size:12px;">No products yet.</div>';
     return;
   }
-  const sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
-  list.innerHTML = sorted.map(p => `
-    <div class="quick-fill-item ${calcProductId === p.id ? 'active' : ''}" onclick="fillCalc('${p.id}')">
-      <span class="qf-name">${escHtml(p.name)}</span>
-      <span class="qf-cpm">$${formatCpm(p.cpm)}</span>
-    </div>
-  `).join('');
+
+  const selectedCat = catSel ? catSel.value : '';
+  const filtered = [...products]
+    .filter(p => !selectedCat || p.category === selectedCat)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  list.innerHTML = filtered.length === 0
+    ? '<div style="color:var(--text-muted);font-size:12px;padding:8px 0;">No products in this category.</div>'
+    : filtered.map(p => `
+      <div class="quick-fill-item ${calcProductId === p.id ? 'active' : ''}" onclick="fillCalc('${p.id}')">
+        <span class="qf-name">${escHtml(p.name)}</span>
+        <span class="qf-cpm">$${formatCpm(p.cpm)}</span>
+      </div>
+    `).join('');
 }
 
 function quickFill(id) {

@@ -15,7 +15,7 @@
   <header>
     <div class="header-inner">
       <div class="logo">
-        <span class="logo-bracket">[</span>CPM<span class="logo-bracket">]</span>
+        <span class="logo-bracket">[</span>459 Digital Calculator<span class="logo-bracket">]</span>
       </div>
       <nav>
         <button class="nav-btn active" data-tab="products">Products</button>
@@ -52,9 +52,29 @@
       <div class="section-header">
         <div>
           <h1>CPM Calculator</h1>
-          <p class="subtitle">Solve for any variable - provide two, get the third</p>
+          <p class="subtitle"><strong>Solve for any variable - provide two, get the third!</strong></p>
         </div>
       </div>
+
+      <!-- Instructions above the main layout -->
+      <div class="tips-card tips-card--inline">
+        <div class="tips-inline-inner">
+          <div class="tips-steps">
+            <h3>How to use</h3>
+            <ul>
+              <li>Click <strong>Solve for...</strong> on the field you want to calculate</li>
+              <li>Enter values in the other two fields</li>
+              <li>Hit <strong>Calculate</strong></li>
+            </ul>
+          </div>
+          <div class="formula-legend">
+            <div><span class="pill">CPM</span> Cost per thousand impressions</div>
+            <div><span class="pill">Cost</span> Total campaign spend ($)</div>
+            <div><span class="pill">Impressions</span> Total ad impressions</div>
+          </div>
+        </div>
+      </div>
+
       <div class="calc-layout">
         <div class="calc-card">
           <div class="calc-context" id="calcContext">
@@ -108,21 +128,12 @@
         <div class="calc-sidebar">
           <div class="quick-fill-card">
             <h3>Quick Fill from Products</h3>
-            <p>Select a product to load its CPM</p>
-            <div id="quickFillList" class="quick-fill-list"></div>
-          </div>
-          <div class="tips-card">
-            <h3>How to use</h3>
-            <ul>
-              <li>Click <strong>Solve for...</strong> on the field you want to calculate</li>
-              <li>Enter values in the other two fields</li>
-              <li>Hit <strong>Calculate</strong></li>
-            </ul>
-            <div class="formula-legend">
-              <div><span class="pill">CPM</span> Cost per thousand impressions</div>
-              <div><span class="pill">Cost</span> Total campaign spend ($)</div>
-              <div><span class="pill">Impressions</span> Total ad impressions</div>
+            <div class="quick-fill-filters">
+              <select id="quickFillCategory" class="select-input" onchange="renderQuickFill()">
+                <option value="">All Categories</option>
+              </select>
             </div>
+            <div id="quickFillList" class="quick-fill-list"></div>
           </div>
         </div>
       </div>
