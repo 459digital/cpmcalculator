@@ -688,7 +688,7 @@ h1 {
 }
 .compare-card--products .compare-product-list {
   flex: 1;
-  max-height: 420px;
+  max-height: 336px;
   min-height: 0;
 }
 
