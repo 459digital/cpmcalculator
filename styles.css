@@ -565,7 +565,6 @@ h1 {
 .calc-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 .quick-fill-card, .tips-card {
@@ -575,11 +574,6 @@ h1 {
   padding: 20px;
 }
 
-/* Sidebar fills full height of the grid row */
-.calc-sidebar {
-  display: flex;
-  flex-direction: column;
-}
 .calc-sidebar .quick-fill-card {
   flex: 1;
   display: flex;
@@ -609,7 +603,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 240px;
   overflow-y: auto;
 }
 
