@@ -420,15 +420,17 @@ function renderCompare() {
   const list = document.getElementById('compareProductList');
   const catSel = document.getElementById('compareCategory');
 
-  // Populate category dropdown
+  // Capture current value BEFORE rebuilding options
+  const cur = catSel ? catSel.value : '';
   if (catSel) {
-    const cur = catSel.value;
     const cats = getCategories();
     catSel.innerHTML = '<option value="">All Categories</option>' +
       cats.map(c => `<option value="${c}" ${c === cur ? 'selected' : ''}>${c}</option>`).join('');
+    // Restore the selection explicitly after innerHTML rebuild
+    catSel.value = cur;
   }
 
-  const selectedCat = catSel ? catSel.value : '';
+  const selectedCat = cur;
   const sorted = [...products]
     .filter(p => !selectedCat || p.category === selectedCat)
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -475,8 +477,6 @@ function renderCompareTable() {
   const maxCpm = Math.max(...selected.map(p => p.cpm));
   const minCpm = Math.min(...selected.map(p => p.cpm));
   const sortedSel = [...selected].sort((a, b) => a.cpm - b.cpm);
-  const avgCpm = selected.reduce((s, p) => s + p.cpm, 0) / selected.length;
-
   const rows = sortedSel.map(p => {
     const barWidth = maxCpm > 0 ? (p.cpm / maxCpm * 100).toFixed(1) : 0;
     const impsForBudget = budget > 0 ? Math.round((budget / p.cpm) * 1000) : null;
@@ -496,12 +496,6 @@ function renderCompareTable() {
       <th>${budget > 0 ? 'Impressions ($' + formatMoney(budget) + ' budget)' : 'Impressions'}</th>
     </tr></thead>
     <tbody>${rows}</tbody>
-    <tfoot><tr style="border-top:2px solid var(--border2)">
-      <td colspan="2" style="color:var(--text-muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;">Summary (${selected.length} products)</td>
-      <td class="td-cpm" style="font-size:14px;">avg $${formatCpm(avgCpm)}</td>
-      <td></td>
-      <td class="td-impressions ${budget > 0 ? 'has-budget' : ''}">${budget > 0 ? formatNum(Math.round((budget / avgCpm) * 1000)) + ' avg' : '&mdash;'}</td>
-    </tr></tfoot>
   </table></div>`;
 }
 

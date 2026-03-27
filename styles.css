@@ -1316,12 +1316,9 @@ tr:hover td { background: var(--surface2); }
   padding: 7px 12px;
 }
 
-/* Compare filter bar */
-.compare-filter-bar {
-  margin-bottom: 10px;
-}
-.compare-filter-bar .select-input {
-  width: 100%;
-  font-size: 12px;
-  padding: 7px 12px;
+/* Compare category filter in header */
+.compare-header-filter {
+  min-width: 200px;
+  font-size: 13px;
+  align-self: center;
 }

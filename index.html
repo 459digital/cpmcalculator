@@ -146,16 +146,14 @@
           <h1>Product Comparison</h1>
           <p class="subtitle">Compare CPMs and budget scenarios across products</p>
         </div>
+        <select id="compareCategory" class="select-input compare-header-filter" onchange="renderCompare()">
+          <option value="">All Categories</option>
+        </select>
       </div>
       <div class="compare-layout">
         <div class="compare-setup">
           <div class="compare-card">
             <h3>Select Products to Compare</h3>
-            <div class="compare-filter-bar">
-              <select id="compareCategory" class="select-input" onchange="renderCompare()">
-                <option value="">All Categories</option>
-              </select>
-            </div>
             <div id="compareProductList" class="compare-product-list"></div>
           </div>
           <div class="compare-card">
