@@ -1316,9 +1316,8 @@ tr:hover td { background: var(--surface2); }
   padding: 7px 12px;
 }
 
-/* Compare category filter in header */
-.compare-header-filter {
-  min-width: 200px;
+/* Compare category select inside card */
+.compare-cat-select {
+  width: 100%;
   font-size: 13px;
-  align-self: center;
 }

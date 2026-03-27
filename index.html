@@ -15,7 +15,7 @@
   <header>
     <div class="header-inner">
       <div class="logo">
-        <span class="logo-bracket">[</span>459 Digital Calculator<span class="logo-bracket">]</span>
+        <span class="logo-bracket">[</span>459 DIGITAL CALCULATOR<span class="logo-bracket">]</span>
       </div>
       <nav>
         <button class="nav-btn active" data-tab="products">Products</button>
@@ -146,15 +146,18 @@
           <h1>Product Comparison</h1>
           <p class="subtitle">Compare CPMs and budget scenarios across products</p>
         </div>
-        <select id="compareCategory" class="select-input compare-header-filter" onchange="renderCompare()">
-          <option value="">All Categories</option>
-        </select>
       </div>
       <div class="compare-layout">
         <div class="compare-setup">
           <div class="compare-card">
             <h3>Select Products to Compare</h3>
             <div id="compareProductList" class="compare-product-list"></div>
+          </div>
+          <div class="compare-card">
+            <h3>Product Category</h3>
+            <select id="compareCategory" class="select-input compare-cat-select" onchange="renderCompare()">
+              <option value="">All Categories</option>
+            </select>
           </div>
           <div class="compare-card">
             <h3>Budget Scenario</h3>
