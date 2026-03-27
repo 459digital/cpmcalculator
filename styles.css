@@ -365,8 +365,8 @@ h1 {
   .calc-layout { grid-template-columns: 1fr; }
 }
 
-/* Stretch sidebar to match calc card height, bounded so list scrolls */
-.calc-layout { align-items: stretch; max-height: 680px; }
+/* Stretch sidebar to match calc card height */
+.calc-layout { align-items: stretch; }
 
 .calc-card {
   background: var(--surface);
@@ -565,6 +565,8 @@ h1 {
 .calc-sidebar {
   display: flex;
   flex-direction: column;
+  max-height: 600px;
+  overflow: hidden;
 }
 
 .quick-fill-card, .tips-card {
@@ -579,6 +581,7 @@ h1 {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  overflow: hidden;
 }
 .calc-sidebar .quick-fill-list {
   flex: 1;
